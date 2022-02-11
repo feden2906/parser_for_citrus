@@ -20,7 +20,7 @@ const foo = async () => {
     }
   })
 
-  return movies;
+  console.log(movies);
 }
 
 foo();
