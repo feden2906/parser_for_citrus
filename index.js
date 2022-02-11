@@ -1,26 +1,63 @@
-const fs = require('fs').promises;
+const list = [
+  {
+    name: 'Vika',
+    course: 'NODE'
+  },
+  {
+    name: 'Viktoria',
+    course: 'JS'
+  },
+  {
+    name: 'Maks',
+    course: 'REACT'
+  },
+  {
+    name: 'Tamara',
+    course: 'JAVA'
+  },
+  {
+    name: 'Volodymyr',
+    course: 'JS'
+  },
+  {
+    name: 'Maks',
+    course: 'JS'
+  },
+  {
+    name: 'Alina',
+    course: 'REACT'
+  },
+  {
+    name: 'Olena',
+    course: 'JS'
+  },
+  {
+    name: 'Dima',
+    course: 'JAVA'
+  },
+];
 
-const foo = async () => {
-  const fileData = await fs.readFile('./movies.txt')
-  const fields = ['Title', 'Release Year', 'Format', 'Stars'];
-  const movies = [];
-  let movieBuffer = {};
+// filter
+// console.log(list.filter(user => user.course === 'JS'));
 
-  fileData.toString().split('\n').forEach(string => {
-    const arrayFromStr = string.split(': ');
+// reduce
+// const newList = list.reduce((acc, user) => {
+//   if (!acc[user.course]) {
+//     acc[user.course] = [];
+//   }
+//   acc[user.course].push(user);
+//
+//   return acc;
+// }, {});
+//
+// console.log(newList);
 
-    if (arrayFromStr.length <= 1) {
-      movies.push(movieBuffer);
-      movieBuffer = {};
-      return;
-    }
+// map
+// Array with out mutation
+// JSON.parse(JSON.stringify(list)).map(user => user.age = Math.round(Math.random() * 40));
+// const a = list.map(user => ({...user, age: Math.round(Math.random() * 40)}));
+//
+// mutation
+// list.map(user => user.age = Math.round(Math.random() * 40));
 
-    if (fields.includes(arrayFromStr[0])) {
-      movieBuffer[arrayFromStr[0].charAt(0).toLowerCase() + arrayFromStr[0].slice(1).split(' ').join('')] = arrayFromStr[1];
-    }
-  })
 
-  console.log(movies);
-}
-
-foo();
