@@ -1,11 +1,12 @@
 const fs = require('fs').promises;
 
-fs.readFile('./movies.txt').then(i => {
+const foo = async () => {
+  const fileData = await fs.readFile('./movies.txt')
   const fields = ['Title', 'Release Year', 'Format', 'Stars'];
   const movies = [];
   let movieBuffer = {};
 
-  i.toString().split('\n').forEach(string => {
+  fileData.toString().split('\n').forEach(string => {
     const arrayFromStr = string.split(': ');
 
     if (arrayFromStr.length <= 1) {
@@ -18,5 +19,8 @@ fs.readFile('./movies.txt').then(i => {
       movieBuffer[arrayFromStr[0].charAt(0).toLowerCase() + arrayFromStr[0].slice(1).split(' ').join('')] = arrayFromStr[1];
     }
   })
+
   return movies;
-}).then(movies => console.log(movies));
+}
+
+foo();
